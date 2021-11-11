@@ -5,12 +5,20 @@
       "nome": "Angular"
     },
     {
-      "nome": "Ruby",
-      "id": 2
-    },
-    {
       "nome": "Javascript",
       "id": 3
+    },
+    {
+      "nome": "Ruby",
+      "id": 4
+    },
+    {
+      "nome": "Ruby",
+      "id": 5
+    },
+    {
+      "nome": "Ruby",
+      "id": 6
     }
   ]
 }
