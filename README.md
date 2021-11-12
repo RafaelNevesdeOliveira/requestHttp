@@ -28,3 +28,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Start JSON-SERVER
 npx json-server --watch db.json
+
+## Descrição
+Temos que nos unsubscribe do componente para evitar memory leaks, é essencial se desinscrever, em grandes aplicações temos poblemas de lentidão e performance da aplicação
