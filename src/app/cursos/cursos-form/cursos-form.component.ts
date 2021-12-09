@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { CursosService } from '../cursos.service';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Curso } from '../cursos-lista/curso-lista';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cursos-form',
@@ -11,6 +14,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./cursos-form.component.scss'],
 })
 export class CursosFormComponent implements OnInit {
+  cursos$?: Observable<Curso[]>
+
   form!: FormGroup;
   submitted = false;
 
@@ -19,11 +24,13 @@ export class CursosFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: CursosService,
     private location: Location,
-    private router: Router
-  ) {}
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
+      id: [null],
       nome: [
         null,
         [
@@ -33,6 +40,24 @@ export class CursosFormComponent implements OnInit {
         ],
       ],
     });
+    this.route.params
+    .pipe(
+      map((params:any)=> params['id']),
+      switchMap(id =>
+        this.service.update(id))
+    )
+    .subscribe(
+      (curso) => {
+        this.updateForm(curso)
+      }
+    )
+  }
+
+  updateForm(curso:any){
+    this.form.patchValue({
+      id: curso.id,
+      nome : curso.nome
+    })
   }
 
   hasError(field: string) {
@@ -45,10 +70,10 @@ export class CursosFormComponent implements OnInit {
     if (this.form.valid) {
       console.log('submit');
       this.service.create(this.form.value).subscribe(
-        (success) =>{
+        (success) => {
           this.modal.showAlertSuccess('Curso criado com sucesso'),
-          this.router.navigateByUrl("/cursos")
-        } ,
+            this.router.navigateByUrl("/cursos")
+        },
         (error) =>
           this.modal.showAlertDanger('Erro ao criar curso, tente novamente'),
         () => console.log('request completo')
@@ -62,8 +87,12 @@ export class CursosFormComponent implements OnInit {
     console.log(this.form.value);
     if (!this.form.valid) {
       console.log('cancel');
+      this.router.navigate([''])
     }
+
   }
+
+
 
   // formulario
 }

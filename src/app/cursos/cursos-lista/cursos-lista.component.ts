@@ -6,6 +6,7 @@ import { EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -21,12 +22,13 @@ export class CursosListaComponent implements OnInit {
   cursos$?: Observable<Curso[]>
   error$ = new Subject<boolean>()
 
-  constructor( private service: CursosService, private alertServce: AlertModalService) { }
+  constructor(private route: ActivatedRoute,private router: Router, private service: CursosService, private alertServce: AlertModalService) { }
 
   ngOnInit(): void {
     // this.service.getList().subscribe(dados => this.cursos = dados);
     this.onRefresh()
   }
+
 
   onRefresh(){
     this.cursos$ = this.service.getList()
@@ -48,5 +50,8 @@ export class CursosListaComponent implements OnInit {
 
   }
 
+  onEdit(id:any){
+    this.router.navigate(['editar', id], {relativeTo: this.route})
+  }
 
 }
