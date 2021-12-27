@@ -14,7 +14,7 @@ import { CursosService } from '../cursos.service';
   providedIn: 'root',
 })
 export class CursoResolverGuard implements Resolve<Curso> {
-  constructor(private cursoService: CursosService) {}
+  constructor(private cursoService: CursosService) { }
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
