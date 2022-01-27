@@ -55,13 +55,6 @@ export class CursosFormComponent implements OnInit {
     // )
   }
 
-  // updateForm(curso:any){
-  //   this.form.patchValue({
-  //     id: curso.id,
-  //     nome : curso.nome
-  //   })
-  // }
-
   hasError(field: string) {
     return this.form.get(field)?.errors;
   }
