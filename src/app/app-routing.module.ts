@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'rxjs-poc',
     loadChildren: ()=> import('./unsubscribe-rxjs/unsubscribe-rxjs.module').then(m=> m.UnsubscribeRxjsModule)
+  },
+  {
+    path: 'pipe',
+    loadChildren: ()=> import('./pipe-test/pipe-test.module').then(m => m.PipeTestModule)
   }
 ];
 
