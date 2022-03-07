@@ -4,19 +4,24 @@ import { CommonModule } from '@angular/common';
 import { PipeTestRoutingModule } from './pipe-test-routing.module';
 import { CpfCnpjPipe } from './pipes/cpf-cnpj.pipe';
 import { PipeTestComponent } from './pipe-test.component';
+import { TempConverterPipe } from './pipes/temp-converter.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     CpfCnpjPipe,
-    PipeTestComponent
+    PipeTestComponent,
+    TempConverterPipe
   ],
   imports: [
     CommonModule,
     PipeTestRoutingModule,
+    FormsModule
   ],
   exports:[
-    CpfCnpjPipe
+    CpfCnpjPipe,
+    TempConverterPipe
   ],
   providers:[CpfCnpjPipe]
 })

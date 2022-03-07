@@ -10,6 +10,8 @@ export class PipeTestComponent implements OnInit {
   birthday = new Date(1988, 3, 15)
   cpf: string = '62185134590'
   cnpj: string = '55533976000111'
+  celcius: any;
+  Fahrenheit: any;
 
   constructor() { }
 

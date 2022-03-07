@@ -13,19 +13,23 @@
         <th scope="row">1</th>
         <td>Date transform - Pipe Template</td>
         <td>name: 'josé' | birthday: '1988, 3, 15'</td>
-        <td>My name is <strong>{{name | uppercase}}</strong> and I was born in <strong>{{ birthday | date:"MM/dd/yyyy" }}</strong></td>
+        <td> My name is <strong>{{ name | uppercase }}</strong> and I was born in <strong>{{ birthday | date: "MM/dd/yyyy" }}</strong>
+        </td>
       </tr>
       <tr>
         <th scope="row">2</th>
         <td>CPF e CNPJ - Custom Pipe</td>
         <td>cpf: '62185134590' | cnpj: '55533976000111'</td>
-        <td>CPF: <strong>{{cpf | cpfCnpj}}</strong>, CNPJ: <strong>{{cnpj | cpfCnpj}}</strong></td>
+        <td> CPF: <strong>{{ cpf | cpfCnpj }}</strong>, CNPJ: <strong>{{ cnpj | cpfCnpj }}</strong>
+        </td>
       </tr>
       <tr>
         <th scope="row">3</th>
-        <td>Larry the Bird</td>
-        <td>Larry the Bird</td>
-        <td>Larry the Bird</td>
+        <td>Conversor de temperatura</td>
+        <td style="display: flex; flex-direction: row">Fahrenheit :
+          <input type="number" [(ngModel)]="Fahrenheit" />
+        </td>
+        <td>Celsius : {{ Fahrenheit | tempConverter: "C" }} °C</td>
       </tr>
     </tbody>
   </table>
